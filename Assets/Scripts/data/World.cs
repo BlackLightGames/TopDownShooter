@@ -22,11 +22,8 @@ public class World {
     public void RandomizeTiles() {
         for (int x = 0; x < width; x++){
             for (int y = 0; y < height; y++){
-                int num = Random.Range(0, 5);
+                int num = Random.Range(1, 5);
                 switch (num) {
-                    case 0:
-                        tiles[x, y].Type = TileType.Empty;
-                        break;
                     case 1:
                         tiles[x, y].Type = TileType.Dirt;
                         break;
@@ -40,7 +37,7 @@ public class World {
                         tiles[x, y].Type = TileType.Wall_Brick;
                         break;
                     default:
-                        tiles[x, y].Type = TileType.Empty;
+                        tiles[x, y].Type = TileType.Grass;
                         break;
                 }
             }

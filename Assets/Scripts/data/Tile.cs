@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public enum TileType { Empty, Dirt, Grass, Floor_Wood, Wall_Brick }
+public enum TileType { Dirt, Grass, Floor_Wood, Wall_Brick }
 
 public class Tile {
 
@@ -29,7 +29,7 @@ public class Tile {
         this.world = world;
         this.x = x;
         this.y = y;
-        this.Type = TileType.Empty;
+        this.Type = TileType.Grass;
     }
 
     public void RegisterTileChangedCallback(Action<Tile> cb) {

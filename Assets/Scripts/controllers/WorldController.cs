@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class WorldController : MonoBehaviour {
 
-    World world;
+    public static World world;
     Dictionary<Tile, GameObject> TileGameObjects;
     Dictionary<string,Sprite> sprites;
 
@@ -23,13 +23,12 @@ public class WorldController : MonoBehaviour {
                 tileGO.transform.position = new Vector3(x, y, 0);
                 tileGO.transform.SetParent(transform, true);
                 SpriteRenderer sr = tileGO.AddComponent<SpriteRenderer>();
-                sr.sprite = null;
+                sr.sprite = sprites["Grass"];
                 Tile tile_data = world.getTileAt(x, y);
                 TileGameObjects.Add(tile_data, tileGO);
                 tile_data.RegisterTileChangedCallback(OnTileChanged);
             }
         }
-        world.RandomizeTiles();
 	}
 
     void OnTileChanged(Tile tile_data) {

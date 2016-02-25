@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\controllers\MapEditorController.cs" />
     <Compile Include="Assets\Scripts\controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\controllers\WorldController.cs" />
     <Compile Include="Assets\Scripts\data\Tile.cs" />

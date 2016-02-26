@@ -9,8 +9,8 @@ public class MapEditorController : MonoBehaviour {
 
     TileType type;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         type = TileType.Grass;
 	}
 	

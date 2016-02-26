@@ -6,9 +6,10 @@ public class WorldController : MonoBehaviour {
     public static World world;
     Dictionary<Tile, GameObject> TileGameObjects;
     Dictionary<string,Sprite> sprites;
+    TileType[] nonWalkable = { TileType.Wall_Brick };
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         sprites = new Dictionary<string, Sprite>();
         Sprite[] spritesTemp = Resources.LoadAll<Sprite>("Textures/");
         foreach (Sprite s in spritesTemp) {
@@ -24,6 +25,7 @@ public class WorldController : MonoBehaviour {
                 tileGO.transform.SetParent(transform, true);
                 SpriteRenderer sr = tileGO.AddComponent<SpriteRenderer>();
                 sr.sprite = sprites["Grass"];
+                tileGO.AddComponent<BoxCollider2D>().enabled = false;
                 Tile tile_data = world.getTileAt(x, y);
                 TileGameObjects.Add(tile_data, tileGO);
                 tile_data.RegisterTileChangedCallback(OnTileChanged);
@@ -39,10 +41,31 @@ public class WorldController : MonoBehaviour {
         }else{
             tile_sr.sprite = null;
         }
+        if (!isWalkable(tile_data))
+        {
+            tile_go.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else {
+            tile_go.GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public bool isWalkable(Tile t)
+    {
+        bool walkable = true;
+        foreach (TileType type in nonWalkable)
+        {
+            if (t.Type == type)
+            {
+                walkable = false;
+                break;
+            }
+        }
+        return walkable;
+    }
 }

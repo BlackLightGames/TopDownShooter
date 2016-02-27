@@ -6,7 +6,7 @@ public class WorldController : MonoBehaviour {
     public static World world;
     Dictionary<Tile, GameObject> TileGameObjects;
     Dictionary<string,Sprite> sprites;
-    TileType[] nonWalkable = { TileType.Wall_Brick };
+    static TileType[] nonWalkable = { TileType.Wall_Brick };
 
     // Use this for initialization
     void Start () {
@@ -55,7 +55,7 @@ public class WorldController : MonoBehaviour {
 	
 	}
 
-    public bool isWalkable(Tile t)
+    public static bool isWalkable(Tile t)
     {
         bool walkable = true;
         foreach (TileType type in nonWalkable)

@@ -41,4 +41,8 @@ public class Tile {
         TileChangedCallback -= cb;
     }
 
+    public Tile[] getNeighbors(bool diagOkay = false) {
+
+    }
+
 }

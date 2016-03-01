@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Node<T> {
 
     public T data;
 
-    public Edge<T>[] edges;
+    public List<Edge<T>> edges;
+
+    public Node() {
+        edges = new List<Edge<T>>();
+    }
 	
 }

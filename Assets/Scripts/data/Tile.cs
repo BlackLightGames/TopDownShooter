@@ -9,8 +9,8 @@ public class Tile {
     Action<Tile> TileChangedCallback;
 
     World world;
-    int x;
-    int y;
+    public int x;
+    public int y;
     TileType type;
 
     public TileType Type {
@@ -20,6 +20,7 @@ public class Tile {
 
         set {
             type = value;
+            PathFinding.instance.InvalidateGrid();
             if (TileChangedCallback != null)
                 TileChangedCallback(this);
         }
@@ -41,7 +42,29 @@ public class Tile {
         TileChangedCallback -= cb;
     }
 
-    public Tile[] getNeighbors(bool diagOkay = false) {
+    public Tile[] getNeighbors(bool diagOkay = false, bool squeezeOkay = false) {
+        Tile[] neighbors;
+        if (!diagOkay)
+            neighbors = new Tile[4];
+        else
+            neighbors = new Tile[8];
+        neighbors[0] = world.getTileAt(x + 1, y);
+        neighbors[1] = world.getTileAt(x - 1, y);
+        neighbors[2] = world.getTileAt(x, y + 1);
+        neighbors[3] = world.getTileAt(x, y - 1);
+
+        if (diagOkay) {
+            if(!(world.getTileAt(x + 1, y) == null || world.getTileAt(x, y+1) == null) || squeezeOkay)
+                neighbors[4] = world.getTileAt(x + 1, y + 1);
+            if (!(world.getTileAt(x - 1, y) == null || world.getTileAt(x, y - 1) == null) || squeezeOkay)
+                neighbors[5] = world.getTileAt(x - 1, y - 1);
+            if (!(world.getTileAt(x - 1, y) == null || world.getTileAt(x, y + 1) == null) || squeezeOkay)
+                neighbors[6] = world.getTileAt(x - 1, y + 1);
+            if (!(world.getTileAt(x + 1, y) == null || world.getTileAt(x, y - 1) == null) || squeezeOkay)
+                neighbors[7] = world.getTileAt(x + 1, y - 1);
+        }
+
+        return neighbors;
 
     }
 

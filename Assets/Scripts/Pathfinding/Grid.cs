@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 public class Grid {
 
-    Dictionary<Tile, Node<Tile>> nodes;
+    public Dictionary<Tile, Node<Tile>> nodes;
 
     public Grid(World world) {
+        nodes = new Dictionary<Tile, Node<Tile>>();
         for (int x = 0; x < world.width; x++){
             for (int y = 0; y < world.height; y++){
                 Tile t = world.getTileAt(x, y);
@@ -19,7 +20,15 @@ public class Grid {
         }
 
         foreach (Tile t in nodes.Keys) {
-
+            Tile[] neighbors = t.getNeighbors(true);
+            foreach (Tile neighbor in neighbors) {
+                if (neighbor != null && WorldController.isWalkable(neighbor) && nodes.ContainsKey(neighbor)) {
+                    Edge<Tile> edge = new Edge<Tile>();
+                    edge.cost = 1;
+                    edge.node = nodes[neighbor];
+                    nodes[t].edges.Add(edge);
+                }
+            }
         }
     }
 

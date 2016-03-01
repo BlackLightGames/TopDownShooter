@@ -31,6 +31,7 @@ public class WorldController : MonoBehaviour {
                 tile_data.RegisterTileChangedCallback(OnTileChanged);
             }
         }
+        PathFinding.instance.InvalidateGrid();
 	}
 
     void OnTileChanged(Tile tile_data) {

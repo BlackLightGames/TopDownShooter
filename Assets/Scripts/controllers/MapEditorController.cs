@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 using UnityEditor;
 using System.IO;
@@ -8,6 +8,7 @@ using System.IO;
 public class MapEditorController : MonoBehaviour {
 
     TileType type;
+    List<Tile> path;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +24,13 @@ public class MapEditorController : MonoBehaviour {
             Tile tile = WorldController.world.getTileAt((int)mousepos.x, (int)mousepos.y);
             if (tile != null) {
                 tile.Type = type;
+            }
+        }
+        if (path != null) {
+            for (int i = 0; i < path.Count - 1; i++) {
+                Vector3 start = new Vector3(path[i].x, path[i].y, -2);
+                Vector3 end = new Vector3(path[i+1].x, path[i+1].y, -2);
+                Debug.DrawLine(start, end, Color.red);
             }
         }
 	}
@@ -66,5 +74,9 @@ public class MapEditorController : MonoBehaviour {
                 tile.Type = (TileType)Enum.Parse(typeof(TileType), args[2]);
             line = sr.ReadLine();
         }
+    }
+
+    public void PathfindTest() {
+        path = PathFinding.instance.FindPath(WorldController.world.getTileAt(0, 0), WorldController.world.getTileAt(5, 5));
     }
 }

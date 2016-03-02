@@ -80,6 +80,7 @@ public class PathFinding : MonoBehaviour {
     List<Tile> reconstructPath(Node<Tile> current) {
         Node<Tile> currentNode = current;
         List<Tile> fullPath = new List<Tile>();
+        fullPath.Add(current.data);
         while (camefrom.ContainsKey(currentNode)) {
             currentNode = camefrom[currentNode];
             fullPath.Add(currentNode.data);

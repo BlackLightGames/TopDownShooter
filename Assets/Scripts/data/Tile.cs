@@ -54,13 +54,13 @@ public class Tile {
         neighbors[3] = world.getTileAt(x, y - 1);
 
         if (diagOkay) {
-            if(!(world.getTileAt(x + 1, y) == null || world.getTileAt(x, y+1) == null) || squeezeOkay)
+            if((WorldController.isWalkable(world.getTileAt(x + 1, y)) && WorldController.isWalkable(world.getTileAt(x, y+1))) || squeezeOkay)
                 neighbors[4] = world.getTileAt(x + 1, y + 1);
-            if (!(world.getTileAt(x - 1, y) == null || world.getTileAt(x, y - 1) == null) || squeezeOkay)
+            if ((WorldController.isWalkable(world.getTileAt(x - 1, y)) && WorldController.isWalkable(world.getTileAt(x, y - 1))) || squeezeOkay)
                 neighbors[5] = world.getTileAt(x - 1, y - 1);
-            if (!(world.getTileAt(x - 1, y) == null || world.getTileAt(x, y + 1) == null) || squeezeOkay)
+            if ((WorldController.isWalkable(world.getTileAt(x - 1, y)) && WorldController.isWalkable(world.getTileAt(x, y + 1))) || squeezeOkay)
                 neighbors[6] = world.getTileAt(x - 1, y + 1);
-            if (!(world.getTileAt(x + 1, y) == null || world.getTileAt(x, y - 1) == null) || squeezeOkay)
+            if ((WorldController.isWalkable(world.getTileAt(x + 1, y)) && WorldController.isWalkable(world.getTileAt(x, y - 1))) || squeezeOkay)
                 neighbors[7] = world.getTileAt(x + 1, y - 1);
         }
 

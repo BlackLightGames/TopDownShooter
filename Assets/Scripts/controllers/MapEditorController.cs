@@ -30,7 +30,7 @@ public class MapEditorController : MonoBehaviour {
             for (int i = 0; i < path.Count - 1; i++) {
                 Vector3 start = new Vector3(path[i].x, path[i].y, -2);
                 Vector3 end = new Vector3(path[i+1].x, path[i+1].y, -2);
-                Debug.DrawLine(start, end, Color.red);
+                Debug.DrawLine(start, end, Color.blue);
             }
         }
 	}

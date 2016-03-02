@@ -58,6 +58,9 @@ public class WorldController : MonoBehaviour {
 
     public static bool isWalkable(Tile t)
     {
+        if (t == null)
+            return false;
+
         bool walkable = true;
         foreach (TileType type in nonWalkable)
         {

@@ -20,7 +20,7 @@ public class Grid {
         }
 
         foreach (Tile t in nodes.Keys) {
-            Tile[] neighbors = t.getNeighbors(true);
+            Tile[] neighbors = t.getNeighbors(true, false);
             foreach (Tile neighbor in neighbors) {
                 if (neighbor != null && WorldController.isWalkable(neighbor) && nodes.ContainsKey(neighbor)) {
                     Edge<Tile> edge = new Edge<Tile>();

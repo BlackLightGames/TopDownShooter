@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\data\Tile.cs">
+    <Files>
+      <File FileName="Assets\Scripts\controllers\PlayerController.cs" Line="22" Column="69" />
+      <File FileName="Assets\Scripts\controllers\WorldController.cs" Line="48" Column="2" />
+      <File FileName="Assets\Scripts\data\Tile.cs" Line="23" Column="51" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

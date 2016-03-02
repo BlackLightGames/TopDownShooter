@@ -68,6 +68,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Pathfinding\Edge.cs" />
+    <Compile Include="Assets\Scripts\Pathfinding\Grid.cs" />
+    <Compile Include="Assets\Scripts\Pathfinding\Node.cs" />
+    <Compile Include="Assets\Scripts\Pathfinding\PathFinding.cs" />
     <Compile Include="Assets\Scripts\controllers\MapEditorController.cs" />
     <Compile Include="Assets\Scripts\controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\controllers\WorldController.cs" />

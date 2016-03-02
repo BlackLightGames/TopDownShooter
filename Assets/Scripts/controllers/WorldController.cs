@@ -6,7 +6,7 @@ public class WorldController : MonoBehaviour {
     public static World world;
     Dictionary<Tile, GameObject> TileGameObjects;
     Dictionary<string,Sprite> sprites;
-    TileType[] nonWalkable = { TileType.Wall_Brick };
+    static TileType[] nonWalkable = { TileType.Wall_Brick };
 
     // Use this for initialization
     void Start () {
@@ -31,6 +31,7 @@ public class WorldController : MonoBehaviour {
                 tile_data.RegisterTileChangedCallback(OnTileChanged);
             }
         }
+        PathFinding.instance.InvalidateGrid();
 	}
 
     void OnTileChanged(Tile tile_data) {
@@ -55,8 +56,11 @@ public class WorldController : MonoBehaviour {
 	
 	}
 
-    public bool isWalkable(Tile t)
+    public static bool isWalkable(Tile t)
     {
+        if (t == null)
+            return false;
+
         bool walkable = true;
         foreach (TileType type in nonWalkable)
         {

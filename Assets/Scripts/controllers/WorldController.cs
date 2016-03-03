@@ -1,22 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
+using System;
 
 public class WorldController : MonoBehaviour {
 
     public static World world;
+    public static WorldController Instance;
     Dictionary<Tile, GameObject> TileGameObjects;
     Dictionary<string,Sprite> sprites;
     static TileType[] nonWalkable = { TileType.Wall_Brick };
 
     // Use this for initialization
     void Start () {
+        Instance = this;
         sprites = new Dictionary<string, Sprite>();
         Sprite[] spritesTemp = Resources.LoadAll<Sprite>("Textures/");
         foreach (Sprite s in spritesTemp) {
             sprites.Add(s.name, s);
         }
         TileGameObjects = new Dictionary<Tile, GameObject>();
-        world = new World();
+        world = new World(25,25);
         for (int x = 0; x < world.width; x++){
             for (int y = 0; y < world.height; y++){
                 GameObject tileGO = new GameObject();
@@ -63,5 +67,20 @@ public class WorldController : MonoBehaviour {
             }
         }
         return walkable;
+    }
+
+    public void load(TextAsset textAsset){
+        TextReader sr = new StringReader(textAsset.text);
+        string line = sr.ReadLine();
+        while (line != null)
+        {
+            string[] args = line.Split(',');
+            int x = int.Parse(args[0]);
+            int y = int.Parse(args[1]);
+            Tile tile = WorldController.world.getTileAt(x, y);
+            if (tile != null)
+                tile.Type = (TileType)Enum.Parse(typeof(TileType), args[2]);
+            line = sr.ReadLine();
+        }
     }
 }

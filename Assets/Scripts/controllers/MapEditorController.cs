@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
-//using UnityEditor;
+using UnityEditor;
 using System.IO;
 
 public class MapEditorController : MonoBehaviour {
@@ -50,7 +50,7 @@ public class MapEditorController : MonoBehaviour {
     }
 
     public void save() {
-        /*string savePath = EditorUtility.SaveFilePanelInProject("Save Level", "Level", "lvl", "Save Level");
+        string savePath = EditorUtility.SaveFilePanelInProject("Save Level", "Level", "txt", "Save Level");
         StreamWriter sr = new StreamWriter(savePath);
         for (int x = 0; x < WorldController.world.width; x++){
             for (int y = 0; y < WorldController.world.height; y++){
@@ -58,11 +58,11 @@ public class MapEditorController : MonoBehaviour {
             }
         }
         sr.Flush();
-        sr.Close();*/
+        sr.Close();
     }
 
     public void load() {
-        /*string openPath = EditorUtility.OpenFilePanel("Load Level", "C:/", "lvl");
+        string openPath = EditorUtility.OpenFilePanel("Load Level", "C:/", "txt");
         StreamReader sr = new StreamReader(openPath);
         string line = sr.ReadLine();
         while (line != null) {
@@ -73,7 +73,7 @@ public class MapEditorController : MonoBehaviour {
             if (tile != null)
                 tile.Type = (TileType)Enum.Parse(typeof(TileType), args[2]);
             line = sr.ReadLine();
-        }*/
+        }
     }
 
     public void PathfindTest() {

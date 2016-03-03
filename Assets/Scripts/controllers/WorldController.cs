@@ -29,6 +29,7 @@ public class WorldController : MonoBehaviour {
                 tileGO.transform.SetParent(transform, true);
                 SpriteRenderer sr = tileGO.AddComponent<SpriteRenderer>();
                 sr.sprite = sprites["Grass"];
+                tileGO.AddComponent<BoxCollider2D>().enabled = false;
                 Tile tile_data = world.getTileAt(x, y);
                 TileGameObjects.Add(tile_data, tileGO);
                 tile_data.RegisterTileChangedCallback(OnTileChanged);
@@ -44,6 +45,13 @@ public class WorldController : MonoBehaviour {
             tile_sr.sprite = sprites[tile_data.Type.ToString()];
         }else{
             tile_sr.sprite = null;
+        }
+        if (WorldController.isWalkable(tile_data))
+        {
+            tile_go.GetComponent<BoxCollider2D>().enabled = false;
+        }
+        else {
+            tile_go.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 	

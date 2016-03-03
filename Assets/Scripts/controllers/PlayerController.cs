@@ -5,14 +5,22 @@ public class PlayerController : MonoBehaviour {
 
     public float speed = 10;
     Vector3 movement = Vector3.zero;
+    public int currentWeapon;
+    public int weaponInventorySize = 5;
+    public Weapon[] weapons;
+    public GameObject gunFX;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    // Use this for initialization
+    void Start () {
+        weapons = new Weapon[weaponInventorySize];
+        weapons[0] = new Pistol(this);
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (weapons[currentWeapon] != null) {
+            weapons[currentWeapon].update(Time.deltaTime);
+        }
         movement.x =+ Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         movement.y =+ Input.GetAxis("Vertical") * speed * Time.deltaTime;
     }

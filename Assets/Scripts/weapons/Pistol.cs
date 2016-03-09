@@ -1,10 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Pistol : Weapon {
 
-    public Pistol(PlayerController owner) : base(owner) {
+    int damage = 5;
 
+    public Pistol(PlayerController owner, Text ammoCounter) : base(owner, ammoCounter) {
+
+    }
+
+    public override void OnReload()
+    {
+        base.OnReload();
+        ammo += ammoInClip;
+        if (ammo >= ammoPerClip)
+        {
+            ammo -= ammoPerClip;
+            ammoInClip = ammoPerClip;
+        }
+        else {
+            ammoInClip = ammo;
+            ammo = 0;
+        }
     }
 
     public override void OnFire()
@@ -27,6 +45,15 @@ public class Pistol : Weapon {
                         otherPos.z = 0;
                         lr.SetPosition(1, otherPos);
                         hit = true;
+                        Transform trans = info.collider.transform;
+                        Health health = null;
+                        while (health == null && trans != null) {
+                            health = trans.GetComponent<Health>();
+                            trans = trans.parent;
+                        }
+                        if (health != null) {
+                            health.DoDamage(damage);
+                        }
                     }
                     break;
                 }

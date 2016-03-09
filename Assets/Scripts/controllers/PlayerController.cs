@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -9,11 +10,12 @@ public class PlayerController : MonoBehaviour {
     public int weaponInventorySize = 5;
     public Weapon[] weapons;
     public GameObject gunFX;
+    public Text ammoCounter;
 
     // Use this for initialization
     void Start () {
         weapons = new Weapon[weaponInventorySize];
-        weapons[0] = new Pistol(this);
+        weapons[0] = new Pistol(this, ammoCounter);
     }
 	
 	// Update is called once per frame

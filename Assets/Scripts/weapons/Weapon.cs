@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Weapon {
 
@@ -11,9 +12,11 @@ public class Weapon {
     public float ammo = 40;
     protected float cooldownTimer;
     public bool fullAuto = false;
+    Text ammoCounter;
 
-    public Weapon(PlayerController owner) {
+    public Weapon(PlayerController owner, Text ammoCounter) {
         this.owner = owner;
+        this.ammoCounter = ammoCounter;
         gunFXPrefab = owner.gunFX;
     }
 
@@ -29,9 +32,13 @@ public class Weapon {
         if ((Input.GetButtonDown("Fire1")) || (fullAuto && Input.GetButton("Fire1"))) {
             OnFire();
         }
+        if (Input.GetButtonDown("Reload")) {
+            OnReload();
+        }
         if (cooldownTimer > 0) {
             cooldownTimer -= deltaTime;
         }
+        ammoCounter.text = ammoInClip + "/" + ammo;
     }
 
 }
